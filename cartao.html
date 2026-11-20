@@ -24,7 +24,7 @@ button{font-family:inherit;cursor:pointer}
 .line{border:1.5px solid var(--navy);color:var(--navy);background:#ffffff40}
 #home .q{position:absolute;left:55px;width:280px;top:calc(var(--gcy)*1px - 6px);transform:translateY(-50%);text-align:center;color:#fff;font-size:30px;line-height:1.22;font-weight:700}
 #home .btn,#recv .btn{top:calc(var(--gby)*1px);height:38px;font-size:17px;width:150px;left:120px}
-#recv .btn{left:60px;width:270px;font-size:16px;white-space:nowrap}
+#recv .btn{top:calc(var(--rby)*1px);left:60px;width:270px;font-size:16px;white-space:nowrap}
 /* write */
 #write .veil{position:absolute;left:0;right:0;top:0;height:380px;background:linear-gradient(180deg,#5d6b9d 0%,#5d6b9dcc 35%,#5d6b9d00 100%)}
 #line{position:absolute;left:32px;right:32px;top:calc(var(--H)*.40px);transform:translateY(-50%);margin:0;font-size:29px;line-height:1.5;font-weight:700;color:var(--navy)}
@@ -59,7 +59,7 @@ button{font-family:inherit;cursor:pointer}
 #pick{display:none;width:100%;height:40px;border:0;background:none;color:var(--navy);font-size:16px;text-decoration:underline;margin-top:6px}
 .legal{margin-top:10px;font-size:12.5px;line-height:17px;font-weight:300;color:#4a5680}
 /* recv */
-#rtxt{position:absolute;left:62px;width:268px;top:calc(var(--gcy)*1px - 4px);transform:translateY(-50%);margin:0;text-align:center;color:#fff;font-size:25px;line-height:1.3;font-weight:700;text-shadow:0 1px 10px #1a254766}
+#rtxt{position:absolute;left:62px;width:268px;top:calc(var(--rcy)*1px - 4px);transform:translateY(-50%);margin:0;text-align:center;color:#fff;font-size:25px;line-height:1.3;font-weight:700;text-shadow:0 1px 10px #1a254766}
 /* final */
 #ftitle{position:absolute;left:20px;right:20px;top:96px;text-align:center;color:#fff;font-size:30px;line-height:1.15;font-weight:700}
 #cv{position:absolute;left:0;top:0;width:390px;height:844px;pointer-events:none}
@@ -80,7 +80,7 @@ button{font-family:inherit;cursor:pointer}
 <section class="scr on" id="home">
   <img class="bg" id="bgHome" alt="">
   <div class="logo" role="img" aria-label="Banco Montepio"><svg width="124" height="39"><use href="#bm"/></svg></div>
-  <div class="q">Faça chegar o seu amor a quem é mais valioso.</div>
+  <div class="q">Faça chegar<br>o seu amor a quem<br>é mais valioso.</div>
   <button class="btn glass" id="goWrite" type="button">Escrever</button>
 </section>
 
@@ -143,7 +143,7 @@ function layout(){
   window.__S=s;window.__H=H;
   app.style.height=H+'px';app.style.left=((vw-390*s)/2)+'px';app.style.transform='scale('+s+')';
   app.style.setProperty('--H',H);
-  const g=geoFor(1080,1935,868,H,.45);place($('bgHome'),g,1080,1935);place($('bgRecv'),g,1080,1935);
+  const g=geoFor(1080,1935,868,H,.45);place($('bgHome'),g,1080,1935);{const c=Math.max(390/1080,H/1935)*1.05;let oy=Math.min(0,Math.max(H-1935*c,H*.45-868*c));const r={c,ox:(390-1080*c)/2,oy};place($('bgRecv'),r,1080,1935);app.style.setProperty('--rcy',868*c+oy);app.style.setProperty('--rby',1625*c+oy+14)}
   app.style.setProperty('--gcy',868*g.c+g.oy);app.style.setProperty('--gby',1440*g.c+g.oy-19);
   {const c=Math.max(390/GEO.w,H/GEO.h);let oy=Math.min(0,H-112-1824*c);oy=Math.max(H-GEO.h*c,oy);FIN={c,ox:(390-GEO.w*c)/2,oy}}place($('bgFinal'),FIN,GEO.w,GEO.h);
   const d=Math.min(devicePixelRatio||1,2)*s;cvs=d;cv.style.height=H+'px';cv.width=Math.round(390*d);cv.height=Math.round(H*d);
