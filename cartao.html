@@ -23,8 +23,8 @@ button{font-family:inherit;cursor:pointer}
 .glass{border:1.5px solid #ffffffcc;color:#fff;background:#ffffff24;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .line{border:1.5px solid var(--navy);color:var(--navy);background:#ffffff40}
 #home .q{position:absolute;left:55px;width:280px;top:calc(var(--gcy)*1px - 6px);transform:translateY(-50%);text-align:center;color:#fff;font-size:30px;line-height:1.22;font-weight:700}
-#home .btn,#recv .btn{top:calc(var(--gby)*1px)}
-#recv .btn{left:70px;width:250px;font-size:19px;white-space:nowrap}
+#home .btn,#recv .btn{top:calc(var(--gby)*1px);height:38px;font-size:17px;width:150px;left:120px}
+#recv .btn{left:60px;width:270px;font-size:16px;white-space:nowrap}
 /* write */
 #write .veil{position:absolute;left:0;right:0;top:0;height:380px;background:linear-gradient(180deg,#5d6b9d 0%,#5d6b9dcc 35%,#5d6b9d00 100%)}
 #line{position:absolute;left:32px;right:32px;top:calc(var(--H)*.40px);transform:translateY(-50%);margin:0;font-size:29px;line-height:1.5;font-weight:700;color:var(--navy)}
@@ -64,9 +64,9 @@ button{font-family:inherit;cursor:pointer}
 #ftitle{position:absolute;left:20px;right:20px;top:96px;text-align:center;color:#fff;font-size:30px;line-height:1.15;font-weight:700}
 #cv{position:absolute;left:0;top:0;width:390px;height:844px;pointer-events:none}
 .pl{position:absolute;max-width:none;object-fit:fill}
-#fwd{position:absolute;left:0;right:0;bottom:46px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#fff;text-decoration:none;opacity:0;transition:opacity .8s}
+#fwd{position:absolute;left:0;right:0;bottom:26px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#fff;text-decoration:none;opacity:0;transition:opacity .8s}
 #fwd.show{opacity:1}
-#fwd svg{width:54px;height:54px;filter:drop-shadow(0 2px 8px #1a254788);animation:blink 1.8s ease-in-out infinite}
+#fwd svg{width:46px;height:46px;filter:drop-shadow(0 2px 8px #1a254788);animation:blink 1.8s ease-in-out infinite}
 #fwd span{font-size:14px;font-weight:300;letter-spacing:.02em}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 @media (prefers-reduced-motion:reduce){#fwd svg{animation:none}}
@@ -80,7 +80,7 @@ button{font-family:inherit;cursor:pointer}
 <section class="scr on" id="home">
   <img class="bg" id="bgHome" alt="">
   <div class="logo" role="img" aria-label="Banco Montepio"><svg width="124" height="39"><use href="#bm"/></svg></div>
-  <div class="q">Quem merece uma mensagem tua neste Natal?</div>
+  <div class="q">Faça chegar o seu amor a quem é mais valioso.</div>
   <button class="btn glass" id="goWrite" type="button">Escrever</button>
 </section>
 
@@ -89,7 +89,7 @@ button{font-family:inherit;cursor:pointer}
   <div class="veil"></div>
   <div id="flakes" aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;pointer-events:none"></div>
   <div class="logo" role="img" aria-label="Banco Montepio"><svg width="124" height="39"><use href="#bm"/></svg></div>
-  <p id="line"><button class="pill" id="p1" type="button">+ contacto</button><span>, </span><span id="msg" role="textbox" aria-label="Mensagem" spellcheck="false">que este Natal nos dê tempo para quem importa. Um abraço de</span> <span style="white-space:nowrap"><button class="pill" id="p2" type="button">+ contacto</button>.</span></p>
+  <p id="line"><button class="pill" id="p1" type="button">+ contacto</button><span>, </span><span id="msg" role="textbox" aria-label="Mensagem" spellcheck="false">desejo que esta quadra te traga o que realmente importa: estar perto de quem mais amas. Felicidades,</span> <span style="white-space:nowrap"><button class="pill" id="p2" type="button">+ contacto</button>.</span></p>
   <div id="hint">Toca na mensagem para a alterar.</div>
   <div id="count"></div>
   <a class="btn" id="send" target="_blank" rel="noopener" href="#">Enviar</a>
@@ -144,8 +144,8 @@ function layout(){
   app.style.height=H+'px';app.style.left=((vw-390*s)/2)+'px';app.style.transform='scale('+s+')';
   app.style.setProperty('--H',H);
   const g=geoFor(1080,1935,868,H,.45);place($('bgHome'),g,1080,1935);place($('bgRecv'),g,1080,1935);
-  app.style.setProperty('--gcy',868*g.c+g.oy);app.style.setProperty('--gby',1395*g.c+g.oy-27);
-  FIN=geoFor(GEO.w,GEO.h,GEO.gy,H,.55);place($('bgFinal'),FIN,GEO.w,GEO.h);
+  app.style.setProperty('--gcy',868*g.c+g.oy);app.style.setProperty('--gby',1440*g.c+g.oy-19);
+  {const c=Math.max(390/GEO.w,H/GEO.h);let oy=Math.min(0,H-112-1824*c);oy=Math.max(H-GEO.h*c,oy);FIN={c,ox:(390-GEO.w*c)/2,oy}}place($('bgFinal'),FIN,GEO.w,GEO.h);
   const d=Math.min(devicePixelRatio||1,2)*s;cvs=d;cv.style.height=H+'px';cv.width=Math.round(390*d);cv.height=Math.round(H*d);
 }
 function show(id){document.querySelectorAll('.scr').forEach(s=>s.classList.toggle('on',s.id===id))}
@@ -227,7 +227,7 @@ setInterval(()=>{if($('write').classList.contains('on'))spawn()},rnd(2200,3400))
 let P=null;
 function readHash(){
   const h=location.hash.slice(1);if(!h)return null;
-  if(h.indexOf('teste')===0){const k=h.split('-')[1]||'ff';return{t:'Ana',f:'Paulo',a:k[0]==='m'?'o':'a',b:k[1]==='m'?'o':(k==='fm'?'o':'a'),m:'que este Natal nos dê tempo para quem importa. Um abraço de'}}
+  if(h.indexOf('teste')===0){const k=h.split('-')[1]||'ff';return{t:'Ana',f:'Paulo',a:k[0]==='m'?'o':'a',b:k[1]==='m'?'o':(k==='fm'?'o':'a'),m:'desejo que esta quadra te traga o que realmente importa: estar perto de quem mais amas. Felicidades,'}}
   try{return unpackPayload(h)}catch(e){return null}
 }
 addEventListener('hashchange',()=>location.reload());
